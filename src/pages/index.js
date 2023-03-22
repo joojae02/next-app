@@ -8,13 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push({
-      pathname:`/movies/${id}`,
-      query: {
-        title,
-      },
-    }, 
-    `/movies/${id}`);
+    router.push(`/movies/${title}/${id}`);
   };
   return (
     <div>
@@ -22,14 +16,7 @@ export default function Home({ results }) {
         <Seo title='HOME'/>
         {results?.map((movie) => (
           <Link
-            href={{
-              pathname: `/movies/${movie.id}`,
-              query: {
-                title: movie.original_title,
-              },
-            }}
-            as={`/movies/${movie.id}`
-            }
+            href={`/movies/${movie.original_title}/${movie.id}`}
             key={movie.id}
           >
             <div className="movie">
